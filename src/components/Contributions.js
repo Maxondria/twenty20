@@ -16,7 +16,6 @@ const FETCH_CONTRIBUTIONS = gql`
 
 const App = () => {
   const { loading, error, data } = useQuery(FETCH_CONTRIBUTIONS);
-  console.log(data, loading, error);
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error :(</p>;
 
