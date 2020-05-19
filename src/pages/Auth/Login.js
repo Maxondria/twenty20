@@ -4,6 +4,7 @@ import { gql, useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import LoginForm from "../../components/forms/login";
 import { AuthUserContext } from "../../contexts/User";
+import { AuthWrapper, AuthFormContainer } from "../../styles/commonStyles";
 
 const LOGIN = gql`
   mutation($email: String!, $password: String!) {
@@ -55,19 +56,11 @@ const Login = () => {
   };
 
   return (
-    <div
-      style={{
-        borderTop: "12px solid #116AB8",
-        display: "flex",
-        justifyContent: "center",
-        alignItems: "center",
-        height: "100vh",
-      }}
-    >
-      <div style={{ width: "90%", maxWidth: "350px" }}>
+    <AuthWrapper>
+      <AuthFormContainer>
         <LoginForm login={login} submitting={loading} />
-      </div>
-    </div>
+      </AuthFormContainer>
+    </AuthWrapper>
   );
 };
 
