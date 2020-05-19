@@ -3,7 +3,12 @@ import { Input, Button } from "antd";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { ErrorBox } from "../../styles/commonStyles";
+import { useIntl } from "react-intl";
+import { messages } from "../../utils/commonwords";
+
 const LoginForm = ({ login, submitting }) => {
+  const intl = useIntl();
+
   const {
     handleSubmit,
     errors,
@@ -17,8 +22,10 @@ const LoginForm = ({ login, submitting }) => {
       password: "",
     },
     validationSchema: Yup.object({
-      email: Yup.string().email("Invalid email address").required("Required"),
-      password: Yup.string().required("Required"),
+      email: Yup.string()
+        .email(intl.formatMessage(messages.invalidemail))
+        .required(intl.formatMessage(messages.required)),
+      password: Yup.string().required(intl.formatMessage(messages.required)),
     }),
     onSubmit: (values) => {
       login(values);
@@ -32,7 +39,7 @@ const LoginForm = ({ login, submitting }) => {
           data-testid="loginEmail"
           type="email"
           name="email"
-          placeholder="Email"
+          placeholder={intl.formatMessage(messages.email)}
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.email}
@@ -47,7 +54,7 @@ const LoginForm = ({ login, submitting }) => {
           data-testid="loginPassword"
           type="password"
           name="password"
-          placeholder="Password"
+          placeholder={intl.formatMessage(messages.password)}
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.password}
@@ -67,7 +74,7 @@ const LoginForm = ({ login, submitting }) => {
           size="large"
           data-testid="loginButton"
         >
-          Log in
+          {intl.formatMessage(messages.login)}
         </Button>
       </form>
     </>

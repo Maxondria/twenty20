@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const AuthWrapper = styled.div`
-  border-top: 12px solid #116ab8;
+  border-top: 12px solid #1890ff;
   display: flex;
   justify-content: center;
   align-items: center;

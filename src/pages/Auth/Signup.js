@@ -46,7 +46,6 @@ const SignupPage = () => {
   });
 
   const signup = (values) => {
-    console.log(values);
     signupFunc({
       variables: {
         firstname: values.firstname,

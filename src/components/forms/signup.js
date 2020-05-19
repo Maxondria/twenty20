@@ -4,9 +4,13 @@ import { Input, Button, Col, Row, Select, DatePicker } from "antd";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 import { ErrorBox } from "../../styles/commonStyles";
+import { useIntl } from "react-intl";
+import { messages } from "../../utils/commonwords";
 
 const { Option } = Select;
 const SignupForm = ({ signup, submitting }) => {
+  const intl = useIntl();
+
   const {
     handleSubmit,
     errors,
@@ -27,28 +31,33 @@ const SignupForm = ({ signup, submitting }) => {
     },
     validationSchema: Yup.object({
       firstname: Yup.string()
-        .min(2, "Too Short!")
-        .max(50, "Too Long!")
+        .min(2, intl.formatMessage(messages.tooshort))
+        .max(50, intl.formatMessage(messages.toolong))
         .trim()
-        .required("Required"),
+        .required(intl.formatMessage(messages.required)),
       lastname: Yup.string()
-        .min(2, "Too Short!")
-        .max(50, "Too Long!")
+        .min(2, intl.formatMessage(messages.tooshort))
+        .max(50, intl.formatMessage(messages.toolong))
         .trim()
-        .required("Required"),
+        .required(intl.formatMessage(messages.required)),
       gender: Yup.mixed()
         .oneOf(["Male", "Female", "Unspecified"])
-        .required("Required"),
+        .required(intl.formatMessage(messages.required)),
       dob: Yup.string()
-        .test("dob", "Less than 18 years", (value) => {
+        .test("dob", intl.formatMessage(messages.lessthan18), (value) => {
           return moment().diff(moment(value), "years") >= 18;
         })
         .required("Required"),
-      email: Yup.string().email("Invalid email").required("Required"),
-      password: Yup.string().required("Required"),
+      email: Yup.string()
+        .email(intl.formatMessage(messages.invalidemail))
+        .required(intl.formatMessage(messages.required)),
+      password: Yup.string().required(intl.formatMessage(messages.required)),
       confirmpassword: Yup.string()
-        .oneOf([Yup.ref("password"), null], "Passwords must match")
-        .required("Required"),
+        .oneOf(
+          [Yup.ref("password"), null],
+          intl.formatMessage(messages.passwordsMatch)
+        )
+        .required(intl.formatMessage(messages.required)),
     }),
     onSubmit: (values) => {
       signup({
@@ -70,7 +79,7 @@ const SignupForm = ({ signup, submitting }) => {
             data-testid="signupFirstname"
             type="text"
             name="firstname"
-            placeholder="First name"
+            placeholder={intl.formatMessage(messages.firstname)}
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.firstname}
@@ -85,7 +94,7 @@ const SignupForm = ({ signup, submitting }) => {
             data-testid="signupLastname"
             type="text"
             name="lastname"
-            placeholder="Last name"
+            placeholder={intl.formatMessage(messages.lastname)}
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.lastname}
@@ -102,7 +111,7 @@ const SignupForm = ({ signup, submitting }) => {
             data-testid="signupEmail"
             type="email"
             name="email"
-            placeholder="Email"
+            placeholder={intl.formatMessage(messages.email)}
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.email}
@@ -121,7 +130,7 @@ const SignupForm = ({ signup, submitting }) => {
             allowClear={false}
             style={{ width: "100%" }}
             data-testid="signupDOB"
-            placeholder="Date of birth"
+            placeholder={intl.formatMessage(messages.dob)}
             onChange={(value) => setFieldValue("dob", value)}
             value={values.dob}
             size="large"
@@ -139,9 +148,13 @@ const SignupForm = ({ signup, submitting }) => {
             defaultValue="Unspecified"
             onChange={(value) => setFieldValue("gender", value)}
           >
-            <Option value="Unspecified">Unspecified</Option>
-            <Option value="Male">Male</Option>
-            <Option value="Female">Female</Option>
+            <Option value="Unspecified">
+              {intl.formatMessage(messages.unspecified)}
+            </Option>
+            <Option value="Male">{intl.formatMessage(messages.male)}</Option>
+            <Option value="Female">
+              {intl.formatMessage(messages.female)}
+            </Option>
           </Select>
 
           <ErrorBox data-testid="genderError">
@@ -156,7 +169,7 @@ const SignupForm = ({ signup, submitting }) => {
             data-testid="signupPassword"
             type="password"
             name="password"
-            placeholder="Password"
+            placeholder={intl.formatMessage(messages.password)}
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.password}
@@ -173,7 +186,7 @@ const SignupForm = ({ signup, submitting }) => {
             data-testid="signupPasswordConfirm"
             type="password"
             name="confirmpassword"
-            placeholder="Confirm Password"
+            placeholder={intl.formatMessage(messages.confirmpassword)}
             onChange={handleChange}
             onBlur={handleBlur}
             value={values.confirmpassword}
@@ -194,7 +207,7 @@ const SignupForm = ({ signup, submitting }) => {
         size="large"
         data-testid="loginButton"
       >
-        Register
+        {intl.formatMessage(messages.register)}
       </Button>
     </form>
   );

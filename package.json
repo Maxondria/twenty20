@@ -14,17 +14,21 @@
     "graphql": "^15.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-intl": "^4.5.5",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "styled-components": "^5.1.0",
     "yup": "^0.28.5"
   },
   "scripts": {
+    "extract-messages": "NODE_ENV=production babel ./src  --out-file /dev/null",
     "start": "craco start",
     "build": "craco build",
     "test": "craco test --env=jest-environment-jsdom-sixteen",
     "e2e": "cypress open",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "extract:pot": "react-intl-po json2pot 'output/messages.json' -c 'id' -o 'output/messages.pot'",
+    "extract:po": "react-intl-po po2json 'output/*.po' -c 'id' -m 'output/messages.json' -o src/translations"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -42,16 +46,20 @@
     ]
   },
   "devDependencies": {
+    "@babel/cli": "^7.8.4",
+    "@babel/core": "^7.9.6",
     "@craco/craco": "^5.6.4",
     "@testing-library/cypress": "^6.0.0",
     "@types/jest": "^25.2.3",
     "babel-plugin-import": "^1.13.0",
+    "babel-plugin-react-intl": "^7.5.8",
     "chance": "^1.1.5",
     "craco-less": "^1.16.0",
     "cypress": "^4.5.0",
     "jest-environment-jsdom-sixteen": "^1.0.3",
     "less": "^3.11.1",
     "less-loader": "^6.1.0",
+    "react-intl-po": "^2.2.2",
     "yarn": "^1.22.4"
   }
 }

@@ -1,0 +1,92 @@
+[
+  {
+    "id": "app.greeting",
+    "description": "Greeting to welcome the user to the app",
+    "defaultMessage": "Hello, {name}!"
+  },
+  {
+    "id": "app.text.login",
+    "description": "Login text.",
+    "defaultMessage": "Login"
+  },
+  {
+    "id": "app.text.register",
+    "description": "Register text.",
+    "defaultMessage": "Register"
+  },
+  {
+    "id": "app.text.required",
+    "description": "Required text.",
+    "defaultMessage": "Required"
+  },
+  {
+    "id": "app.message.invalidemail",
+    "description": "form error message",
+    "defaultMessage": "Invalid email"
+  },
+  {
+    "id": "app.text.email",
+    "description": "email text",
+    "defaultMessage": "Email"
+  },
+  {
+    "id": "app.text.password",
+    "description": "password text",
+    "defaultMessage": "Password"
+  },
+  {
+    "id": "app.text.confirmpassword",
+    "description": "confirm password text",
+    "defaultMessage": "Confirm password"
+  },
+  {
+    "id": "app.text.unspecified",
+    "description": "Unspecified text",
+    "defaultMessage": "Unspecified"
+  },
+  {
+    "id": "app.text.male",
+    "description": "Male text",
+    "defaultMessage": "Male"
+  },
+  {
+    "id": "app.text.female",
+    "description": "Female text",
+    "defaultMessage": "Female"
+  },
+  {
+    "id": "app.message.toolong",
+    "description": "too long error message",
+    "defaultMessage": "Too long"
+  },
+  {
+    "id": "app.message.tooshort",
+    "description": "too short error message",
+    "defaultMessage": "Too short"
+  },
+  {
+    "id": "app.message.passwordsMatch",
+    "description": "Passwords must match error message",
+    "defaultMessage": "Passwords must match"
+  },
+  {
+    "id": "app.text.firstname",
+    "description": "firstname text",
+    "defaultMessage": "First name"
+  },
+  {
+    "id": "app.text.lastname",
+    "description": "lastname text",
+    "defaultMessage": "Last name"
+  },
+  {
+    "id": "app.text.Dateofbirth",
+    "description": "Date of birth text",
+    "defaultMessage": "Date of birth"
+  },
+  {
+    "id": "app.message.lessthan18",
+    "description": "lessthan18 error message",
+    "defaultMessage": "Less than 18 years"
+  }
+]

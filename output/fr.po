@@ -1,0 +1,157 @@
+msgid ""
+msgstr ""
+"POT-Creation-Date: 2020-05-19T07:16:17.094Z\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"MIME-Version: 1.0\n"
+"X-Generator: Poedit 2.3.1\n"
+"Project-Id-Version: \n"
+"PO-Revision-Date: \n"
+"Language-Team: \n"
+"Last-Translator: \n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+"Language: fr\n"
+
+#. [app.text.confirmpassword] - confirm password text
+#. defaultMessage is:
+#. Confirm password
+#: output/messages.json
+msgctxt "app.text.confirmpassword"
+msgid "Confirm password"
+msgstr "Confirmer le mot de passe"
+
+#. [app.text.Dateofbirth] - Date of birth text
+#. defaultMessage is:
+#. Date of birth
+#: output/messages.json
+msgctxt "app.text.Dateofbirth"
+msgid "Date of birth"
+msgstr "Date de naissance"
+
+#. [app.text.email] - email text
+#. defaultMessage is:
+#. Email
+#: output/messages.json
+msgctxt "app.text.email"
+msgid "Email"
+msgstr "Courriel"
+
+#. [app.text.female] - Female text
+#. defaultMessage is:
+#. Female
+#: output/messages.json
+msgctxt "app.text.female"
+msgid "Female"
+msgstr "Femelle"
+
+#. [app.text.firstname] - firstname text
+#. defaultMessage is:
+#. First name
+#: output/messages.json
+msgctxt "app.text.firstname"
+msgid "First name"
+msgstr "Prénom"
+
+#. [app.greeting] - Greeting to welcome the user to the app
+#. defaultMessage is:
+#. Hello, {name}!
+#: output/messages.json
+msgctxt "app.greeting"
+msgid "Hello, {name}!"
+msgstr "Bonjour, {name} !"
+
+#. [app.message.invalidemail] - form error message
+#. defaultMessage is:
+#. Invalid email
+#: output/messages.json
+msgctxt "app.message.invalidemail"
+msgid "Invalid email"
+msgstr "Email invalide"
+
+#. [app.text.lastname] - lastname text
+#. defaultMessage is:
+#. Last name
+#: output/messages.json
+msgctxt "app.text.lastname"
+msgid "Last name"
+msgstr "Nom de famille"
+
+#. [app.message.lessthan18] - lessthan18 error message
+#. defaultMessage is:
+#. Less than 18 years
+#: output/messages.json
+msgctxt "app.message.lessthan18"
+msgid "Less than 18 years"
+msgstr "Moins de 18 ans"
+
+#. [app.text.login] - Login text.
+#. defaultMessage is:
+#. Login
+#: output/messages.json
+msgctxt "app.text.login"
+msgid "Login"
+msgstr "S’identifier"
+
+#. [app.text.male] - Male text
+#. defaultMessage is:
+#. Male
+#: output/messages.json
+msgctxt "app.text.male"
+msgid "Male"
+msgstr "Mâle"
+
+#. [app.text.password] - password text
+#. defaultMessage is:
+#. Password
+#: output/messages.json
+msgctxt "app.text.password"
+msgid "Password"
+msgstr "Mot de passe"
+
+#. [app.message.passwordsMatch] - Passwords must match error message
+#. defaultMessage is:
+#. Passwords must match
+#: output/messages.json
+msgctxt "app.message.passwordsMatch"
+msgid "Passwords must match"
+msgstr "Inadéquation des mots de passe"
+
+#. [app.text.register] - Register text.
+#. defaultMessage is:
+#. Register
+#: output/messages.json
+msgctxt "app.text.register"
+msgid "Register"
+msgstr "S’inscrire"
+
+#. [app.text.required] - Required text.
+#. defaultMessage is:
+#. Required
+#: output/messages.json
+msgctxt "app.text.required"
+msgid "Required"
+msgstr "Obligatoire"
+
+#. [app.message.toolong] - too long error message
+#. defaultMessage is:
+#. Too long
+#: output/messages.json
+msgctxt "app.message.toolong"
+msgid "Too long"
+msgstr "Trop long"
+
+#. [app.message.tooshort] - too short error message
+#. defaultMessage is:
+#. Too short
+#: output/messages.json
+msgctxt "app.message.tooshort"
+msgid "Too short"
+msgstr "Trop court"
+
+#. [app.text.unspecified] - Unspecified text
+#. defaultMessage is:
+#. Unspecified
+#: output/messages.json
+msgctxt "app.text.unspecified"
+msgid "Unspecified"
+msgstr "Non spécifié"

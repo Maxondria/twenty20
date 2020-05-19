@@ -7,8 +7,8 @@ module.exports = {
       options: {
         lessLoaderOptions: {
           modifyVars: {
-            "@border-radius-base": "6px",
-            "@font-size-base": "15px",
+            "@border-radius-base": "4px",
+            // "@font-size-base": "15px",
           },
           javascriptEnabled: true,
         },

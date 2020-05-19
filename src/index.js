@@ -7,12 +7,30 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/link-context";
-
+import { ConfigProvider } from "antd";
+import { IntlProvider } from "react-intl";
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "./layouts/App";
 import "./styles/index.less";
 import * as serviceWorker from "./serviceWorker";
 import AuthUserContextProvider from "./contexts/User";
+
+// import en from "antd/es/locale/en_GB";
+// import fr from "antd/es/locale/fr_FR";
+// import de from "antd/es/locale/de_DE";
+// import es from "antd/es/locale/es_ES";
+
+import loc_de from "./translations/de.json";
+import loc_es from "./translations/es.json";
+import loc_fr from "./translations/fr.json";
+
+const data = {
+  de: loc_de,
+  es: loc_es,
+  fr: loc_fr,
+};
+
+const language = navigator.language.split(/[-_]/)[0];
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
@@ -39,7 +57,11 @@ ReactDOM.render(
   <ApolloProvider client={client}>
     <AuthUserContextProvider>
       <Router>
-        <App />
+        <IntlProvider locale={language} messages={data[language]}>
+          <ConfigProvider locale={language}>
+            <App />
+          </ConfigProvider>
+        </IntlProvider>
       </Router>
     </AuthUserContextProvider>
   </ApolloProvider>,

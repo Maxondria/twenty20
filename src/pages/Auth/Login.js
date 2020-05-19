@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import { notification } from "antd";
 import { gql, useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
+import { FormattedMessage } from "react-intl";
 import LoginForm from "../../components/forms/login";
 import { AuthUserContext } from "../../contexts/User";
 import { AuthWrapper, AuthFormContainer } from "../../styles/commonStyles";
@@ -56,6 +57,16 @@ const Login = () => {
   return (
     <AuthWrapper>
       <AuthFormContainer>
+        <h1>
+          <FormattedMessage
+            id="app.greeting"
+            description="Greeting to welcome the user to the app"
+            defaultMessage="Hello, {name}!"
+            values={{
+              name: "Eric",
+            }}
+          />
+        </h1>
         <LoginForm login={login} submitting={loading} />
       </AuthFormContainer>
     </AuthWrapper>
