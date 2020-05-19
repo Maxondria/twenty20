@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { notification } from "antd";
 import { gql, useMutation } from "@apollo/client";
-import { useHistory } from "react-router-dom";
+import { useHistory, useRouteMatch, NavLink } from "react-router-dom";
 
 import { AuthUserContext } from "../../contexts/User";
 import { AuthWrapper, AuthFormContainer } from "../../styles/commonStyles";
@@ -40,7 +40,9 @@ const SIGNUP = gql`
 `;
 const SignupPage = () => {
   const history = useHistory();
+  const match = useRouteMatch();
   const { setUser } = useContext(AuthUserContext);
+
   const [signupFunc, { loading }] = useMutation(SIGNUP, {
     errorPolicy: "all",
   });
@@ -80,6 +82,7 @@ const SignupPage = () => {
     <AuthWrapper>
       <AuthFormContainer>
         <SignupForm signup={signup} submitting={loading} />
+        <NavLink to={`/${match.params.lang}/login`}>Login</NavLink>
       </AuthFormContainer>
     </AuthWrapper>
   );

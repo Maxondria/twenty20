@@ -4,7 +4,6 @@ import { AuthUserContext } from "../../contexts/User";
 
 const HomePage = () => {
   const { client, setUser } = useContext(AuthUserContext);
-
   const logout = () => {
     localStorage.removeItem("token");
     setUser(null);

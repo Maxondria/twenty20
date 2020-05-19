@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Route, Redirect } from "react-router-dom";
 import { AuthUserContext } from "../../contexts/User";
 
-const PrivateRoute = ({ children, ...rest }) => {
+const PrivateRoute = ({ children, lang, ...rest }) => {
   const { authUser } = useContext(AuthUserContext);
   if (authUser === undefined) {
     return <p>Loading...</p>;
@@ -15,7 +15,7 @@ const PrivateRoute = ({ children, ...rest }) => {
         render={({ location }) => (
           <Redirect
             to={{
-              pathname: "/login",
+              pathname: `/${lang}/login`,
               state: { from: location },
             }}
           />
