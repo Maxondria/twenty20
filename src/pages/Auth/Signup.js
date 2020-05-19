@@ -1,24 +1,39 @@
 import React, { useContext } from "react";
-import { toaster } from "evergreen-ui";
+import { notification } from "antd";
 import { gql, useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
+
 import { AuthUserContext } from "../../contexts/User";
 import { AuthWrapper, AuthFormContainer } from "../../styles/commonStyles";
 import SignupForm from "../../components/forms/signup";
 
 const SIGNUP = gql`
-  mutation($email: String!, $password: String!) {
-    login(email: $email, password: $password) {
+  mutation signup(
+    $firstname: String!
+    $lastname: String!
+    $email: String!
+    $gender: Gender!
+    $password: String!
+    $dob: String
+  ) {
+    signup(
+      firstname: $firstname
+      lastname: $lastname
+      email: $email
+      gender: $gender
+      password: $password
+      dob: $dob
+    ) {
       token
       user {
+        email
         id
         firstname
         lastname
-        email
         dob
         gender
-        updatedAt
         createdAt
+        updatedAt
       }
     }
   }
@@ -31,24 +46,31 @@ const SignupPage = () => {
   });
 
   const signup = (values) => {
+    console.log(values);
     signupFunc({
-      variables: { email: values.email, password: values.password },
+      variables: {
+        firstname: values.firstname,
+        lastname: values.lastname,
+        gender: values.gender,
+        email: values.email,
+        password: values.password,
+        dob: values.dob,
+      },
     })
       .then((res) => {
         if (res?.errors) {
-          toaster.danger(res?.errors[0]?.message);
+          console.log(res?.errors);
+          notification.error({ message: res?.errors[0]?.message });
           return;
         }
 
         if (res?.data) {
-          localStorage.setItem("token", res.data?.login?.token);
-          setUser(res?.data?.login?.user);
-          toaster.success(
-            `Welcome, ${res.data?.login?.user?.firstname} ${res.data?.login?.user?.lastname}`,
-            {
-              id: "auth-toast",
-            }
-          );
+          localStorage.setItem("token", res.data?.signup?.token);
+          setUser(res?.data?.signup?.user);
+          notification.success({
+            message: `Welcome, ${res.data?.signup?.user?.firstname} ${res.data?.signup?.user?.lastname}`,
+            key: "auth-toast",
+          });
           history.replace("/");
         }
       })

@@ -1,8 +1,8 @@
 import React from "react";
-import { TextInputField, Button } from "evergreen-ui";
+import { Input, Button } from "antd";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-
+import { ErrorBox } from "../../styles/commonStyles";
 const LoginForm = ({ login, submitting }) => {
   const {
     handleSubmit,
@@ -28,41 +28,46 @@ const LoginForm = ({ login, submitting }) => {
   return (
     <>
       <form onSubmit={handleSubmit} data-testid="loginForm">
-        <TextInputField
-          isInvalid={errors.email && touched.email}
-          label="Email"
-          validationMessage={errors.email && touched.email && errors.email}
+        <Input
+          data-testid="loginEmail"
           type="email"
           name="email"
+          placeholder="Email"
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.email}
-          inputHeight={40}
+          size="large"
         />
 
-        <TextInputField
-          isInvalid={errors.password && touched.password}
-          label="Password"
-          validationMessage={
-            errors.password && touched.password && errors.password
-          }
+        <ErrorBox data-testid="emailError">
+          {touched.email && errors?.email}
+        </ErrorBox>
+
+        <Input
+          data-testid="loginPassword"
           type="password"
           name="password"
+          placeholder="Password"
           onChange={handleChange}
           onBlur={handleBlur}
           value={values.password}
-          inputHeight={40}
+          size="large"
         />
 
+        <ErrorBox data-testid="passwordError">
+          {touched.password && errors?.password}
+        </ErrorBox>
+
         <Button
-          type="submit"
+          loading={submitting}
           disabled={submitting}
-          isLoading={submitting}
-          appearance="primary"
-          height={40}
-          style={{ width: "100%", display: "inline-block" }}
+          type="primary"
+          htmlType="submit"
+          block
+          size="large"
+          data-testid="loginButton"
         >
-          Submit
+          Log in
         </Button>
       </form>
     </>

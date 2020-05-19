@@ -12,3 +12,9 @@ export const AuthFormContainer = styled.div`
   width: 90%;
   max-width: 350px;
 `;
+
+export const ErrorBox = styled.div`
+  color: red;
+  height: 24px;
+  font-size: 12px;
+`;

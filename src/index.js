@@ -10,6 +10,7 @@ import { setContext } from "@apollo/link-context";
 
 import { BrowserRouter as Router } from "react-router-dom";
 import App from "./layouts/App";
+import "./styles/index.less";
 import * as serviceWorker from "./serviceWorker";
 import AuthUserContextProvider from "./contexts/User";
 
@@ -35,15 +36,13 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
-  <React.StrictMode>
-    <ApolloProvider client={client}>
-      <AuthUserContextProvider>
-        <Router>
-          <App />
-        </Router>
-      </AuthUserContextProvider>
-    </ApolloProvider>
-  </React.StrictMode>,
+  <ApolloProvider client={client}>
+    <AuthUserContextProvider>
+      <Router>
+        <App />
+      </Router>
+    </AuthUserContextProvider>
+  </ApolloProvider>,
   document.getElementById("root")
 );
 

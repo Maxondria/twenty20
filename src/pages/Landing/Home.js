@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Button, toaster } from "evergreen-ui";
+import { Button, notification } from "antd";
 import { AuthUserContext } from "../../contexts/User";
 
 const HomePage = () => {
@@ -9,20 +9,16 @@ const HomePage = () => {
     localStorage.removeItem("token");
     setUser(null);
     client.resetStore();
-    toaster.notify("Goodbye", {
-      id: "auth-toast",
+    notification.info({
+      message: "Goodbye",
+      key: "auth-toast",
     });
   };
 
   return (
     <div>
       <p>HomePage</p>
-      <Button
-        marginRight={16}
-        onClick={logout}
-        appearance="primary"
-        intent="danger"
-      >
+      <Button type="primary" danger onClick={logout}>
         Log out
       </Button>
     </div>

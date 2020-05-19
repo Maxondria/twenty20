@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { toaster } from "evergreen-ui";
+import { notification } from "antd";
 import { gql, useMutation } from "@apollo/client";
 import { useHistory } from "react-router-dom";
 import LoginForm from "../../components/forms/login";
@@ -36,19 +36,17 @@ const Login = () => {
     })
       .then((res) => {
         if (res?.errors) {
-          toaster.danger(res?.errors[0]?.message);
+          notification.danger({ message: res?.errors[0]?.message });
           return;
         }
 
         if (res?.data) {
           localStorage.setItem("token", res.data?.login?.token);
           setUser(res?.data?.login?.user);
-          toaster.success(
-            `Welcome, ${res.data?.login?.user?.firstname} ${res.data?.login?.user?.lastname}`,
-            {
-              id: "auth-toast",
-            }
-          );
+          notification.success({
+            message: `Welcome, ${res.data?.login?.user?.firstname} ${res.data?.login?.user?.lastname}`,
+            key: "auth-toast",
+          });
           history.replace("/");
         }
       })
