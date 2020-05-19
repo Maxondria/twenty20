@@ -4,7 +4,6 @@ import { AuthUserContext } from "../../contexts/User";
 
 const PrivateRoute = ({ children, ...rest }) => {
   const { authUser } = useContext(AuthUserContext);
-
   if (authUser === undefined) {
     return <p>Loading...</p>;
   }
