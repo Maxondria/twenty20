@@ -18,3 +18,7 @@ export const ErrorBox = styled.div`
   height: 24px;
   font-size: 12px;
 `;
+
+export const AuthFormLinks = styled.div`
+  margin-top: 12px;
+`;

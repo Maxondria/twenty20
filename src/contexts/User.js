@@ -27,13 +27,15 @@ const AuthUserContextProvider = (props) => {
   };
 
   useEffect(() => {
-    if (data?.profile) {
-      setAuthUser(data.profile);
+    if (data?.profile !== null) {
+      setAuthUser(data?.profile);
     }
 
     if (error) {
       setAuthUser(null);
     }
+
+    setAuthUser(null);
   }, [data, error]);
 
   return (

@@ -4,8 +4,13 @@ import { gql, useMutation } from "@apollo/client";
 import { useHistory, useRouteMatch, NavLink } from "react-router-dom";
 
 import { AuthUserContext } from "../../contexts/User";
-import { AuthWrapper, AuthFormContainer } from "../../styles/commonStyles";
+import {
+  AuthWrapper,
+  AuthFormContainer,
+  AuthFormLinks,
+} from "../../styles/commonStyles";
 import SignupForm from "../../components/forms/signup";
+import { FormattedMessage } from "react-intl";
 
 const SIGNUP = gql`
   mutation signup(
@@ -81,8 +86,22 @@ const SignupPage = () => {
   return (
     <AuthWrapper>
       <AuthFormContainer>
+        <h1>
+          <FormattedMessage
+            id="app.title.createaccount"
+            defaultMessage="Create Account"
+          />
+        </h1>
         <SignupForm signup={signup} submitting={loading} />
-        <NavLink to={`/${match.params.lang}/login`}>Login</NavLink>
+        <AuthFormLinks>
+          <FormattedMessage
+            defaultMessage="Already have an account?"
+            id="app.info.alreadyaccount"
+          />{" "}
+          <NavLink to={`/${match.params.lang}/login`}>
+            <FormattedMessage defaultMessage="Login" id="app.text.login" />
+          </NavLink>
+        </AuthFormLinks>
       </AuthFormContainer>
     </AuthWrapper>
   );

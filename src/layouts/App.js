@@ -5,6 +5,7 @@ import { IntlProvider } from "react-intl";
 import styled from "styled-components";
 import LoginPage from "../pages/Auth/Login";
 import SignupPage from "../pages/Auth/Signup";
+import RequestReset from "../pages/Auth/RequestReset";
 import PrivateRoute from "../components/hoc/PrivateRoute";
 import AuthRoute from "../components/hoc/AuthRoute";
 import { IntlContext } from "../contexts/Intl";
@@ -17,6 +18,7 @@ import loc_de from "../translations/de.json";
 import loc_es from "../translations/es.json";
 import loc_fr from "../translations/fr.json";
 import Home from "./Home";
+import ResetPassword from "../pages/Auth/ResetPassword";
 
 const data = {
   de: loc_de,
@@ -73,6 +75,12 @@ const App = () => {
             </AuthRoute>
             <AuthRoute path="/:lang/signup/">
               <SignupPage />
+            </AuthRoute>
+            <AuthRoute path="/:lang/requestreset/">
+              <RequestReset />
+            </AuthRoute>
+            <AuthRoute path="/:lang/passwordreset/:tokenFRReset">
+              <ResetPassword />
             </AuthRoute>
             <PrivateRoute path="/:lang/" lang={lang}>
               <Home />

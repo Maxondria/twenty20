@@ -5,7 +5,11 @@ import { useHistory, useRouteMatch, NavLink } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
 import LoginForm from "../../components/forms/login";
 import { AuthUserContext } from "../../contexts/User";
-import { AuthWrapper, AuthFormContainer } from "../../styles/commonStyles";
+import {
+  AuthWrapper,
+  AuthFormContainer,
+  AuthFormLinks,
+} from "../../styles/commonStyles";
 
 const LOGIN = gql`
   mutation($email: String!, $password: String!) {
@@ -39,7 +43,7 @@ const Login = () => {
     })
       .then((res) => {
         if (res?.errors) {
-          notification.danger({ message: res?.errors[0]?.message });
+          notification.error({ message: res?.errors[0]?.message });
           return;
         }
 
@@ -61,16 +65,29 @@ const Login = () => {
       <AuthFormContainer>
         <h1>
           <FormattedMessage
-            id="app.greeting"
-            description="Greeting to welcome the user to the app"
-            defaultMessage="Hello, {name}!"
-            values={{
-              name: "Eric",
-            }}
+            id="app.title.accessaccount"
+            defaultMessage="Access account"
           />
         </h1>
         <LoginForm login={login} submitting={loading} />
-        <NavLink to={`/${match.params.lang}/signup`}>Register</NavLink>
+        <div style={{ display: "flex", justifyContent: "space-between" }}>
+          <AuthFormLinks>
+            <NavLink to={`/${match.params.lang}/signup`}>
+              <FormattedMessage
+                defaultMessage="Register"
+                id="app.text.register"
+              />
+            </NavLink>
+          </AuthFormLinks>
+          <AuthFormLinks>
+            <NavLink to={`/${match.params.lang}/requestreset`}>
+              <FormattedMessage
+                defaultMessage="Forgotten password?"
+                id="app.text.Forgottenpassword"
+              />
+            </NavLink>
+          </AuthFormLinks>
+        </div>
       </AuthFormContainer>
     </AuthWrapper>
   );

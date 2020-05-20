@@ -6,6 +6,11 @@ export const messages = defineMessages({
     description: "Login text.",
     defaultMessage: "Login",
   },
+  requestReset: {
+    id: "app.text.requestReset",
+    description: "Request reset text.",
+    defaultMessage: "Request reset",
+  },
   register: {
     id: "app.text.register",
     description: "Register text.",
