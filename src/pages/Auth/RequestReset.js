@@ -12,10 +12,9 @@ import { notification } from "antd";
 import RequestresetForm from "../../components/forms/requestreset";
 
 const REQUEST_RESET = gql`
-  mutation {
-    requestReset(email: "mdmad7@gmail.com") {
+  mutation($email: String!, $language: String!) {
+    requestReset(email: $email, language: $language) {
       message
-      token
     }
   }
 `;
@@ -28,8 +27,9 @@ const RequestReset = () => {
   });
 
   const submit = (values) => {
+    console.log(values);
     resetFunc({
-      variables: { email: values.email },
+      variables: { email: values.email, language: match.params.lang },
     })
       .then((res) => {
         if (res?.errors) {
@@ -38,9 +38,6 @@ const RequestReset = () => {
         }
 
         if (res?.data) {
-          //TODO: Remember to remove below line after email sending is complete on server
-          console.log("token", res.data?.requestReset?.token);
-
           notification.success({
             message: `Email has been sent with instructions`,
             key: "auth-toast",
