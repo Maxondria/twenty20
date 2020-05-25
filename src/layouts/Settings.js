@@ -109,7 +109,7 @@ const Settings = () => {
               <Home />
             </Route>
             <Route path="/:lang/settings/profile">
-              <Profile />
+              <Profile user={authUser} />
             </Route>
             <Route path="/:lang/settings/passwordchange">
               <ChangePassword />

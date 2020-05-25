@@ -101,4 +101,8 @@ export const messages = defineMessages({
     id: "app.message.lessthan18",
     defaultMessage: "Less than 18 years",
   },
+  updateProfile: {
+    id: "app.message.updateProfile",
+    defaultMessage: "Update profile",
+  },
 });

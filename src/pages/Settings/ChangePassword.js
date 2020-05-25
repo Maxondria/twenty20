@@ -38,17 +38,7 @@ const ChangePassword = () => {
       })
       .catch((error) => console.log(error));
   };
-  return (
-    <div>
-      <p>
-        <FormattedMessage
-          defaultMessage="Change password"
-          id="app.text.ChangePassword"
-        />{" "}
-      </p>
-      <ChangePasswordForm submit={submit} submitting={loading} />
-    </div>
-  );
+  return <ChangePasswordForm submit={submit} submitting={loading} />;
 };
 
 export default ChangePassword;
