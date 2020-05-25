@@ -58,15 +58,13 @@ const SettingsCardSidebar = styled.ul`
 
 const SettingsCardMain = styled.div`
   flex: 1;
-  padding: 15px;
+  padding: 35px 30px;
 `;
 
 const Settings = () => {
   const { authUser, logout } = useContext(AuthUserContext);
   const match = useRouteMatch();
   const intl = useIntl();
-
-  console.log(logout);
 
   const links = [
     { name: "Account Settings", to: `${match.url}` },

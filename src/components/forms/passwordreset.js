@@ -22,7 +22,9 @@ const PasswordResetForm = ({ submit, submitting }) => {
       confirmpassword: "",
     },
     validationSchema: Yup.object({
-      password: Yup.string().required(intl.formatMessage(messages.required)),
+      password: Yup.string()
+        .min(6, intl.formatMessage(messages.tooshort))
+        .required(intl.formatMessage(messages.required)),
       confirmpassword: Yup.string()
         .oneOf(
           [Yup.ref("password"), null],

@@ -5,6 +5,10 @@ export const messages = defineMessages({
     id: "app.text.login",
     defaultMessage: "Login",
   },
+  changepassword: {
+    id: "app.text.changepassword",
+    defaultMessage: "Change password",
+  },
   logout: {
     id: "app.text.logout",
     defaultMessage: "Log out",
@@ -76,6 +80,10 @@ export const messages = defineMessages({
   passwordsMatch: {
     id: "app.message.passwordsMatch",
     defaultMessage: "Passwords must match",
+  },
+  passwordsMustNotMatch: {
+    id: "app.message.passwordsMustNotMatch",
+    defaultMessage: "New password must not match old password",
   },
   firstname: {
     id: "app.text.firstname",
