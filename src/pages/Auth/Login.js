@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { notification } from "antd";
 import { gql, useMutation } from "@apollo/client";
-import { useHistory, useRouteMatch, NavLink } from "react-router-dom";
+import { useHistory, useParams, NavLink } from "react-router-dom";
 import { FormattedMessage } from "react-intl";
 import LoginForm from "../../components/forms/login";
 import { AuthUserContext } from "../../contexts/User";
@@ -30,7 +30,7 @@ const LOGIN = gql`
 `;
 const Login = () => {
   const history = useHistory();
-  const match = useRouteMatch();
+  const params = useParams();
   const { setUser } = useContext(AuthUserContext);
 
   const [loginFunc, { loading }] = useMutation(LOGIN, {
@@ -54,7 +54,7 @@ const Login = () => {
             message: `Welcome, ${res.data?.login?.user?.firstname} ${res.data?.login?.user?.lastname}`,
             key: "auth-toast",
           });
-          history.replace("/");
+          history.replace(`/${params.lang}/`);
         }
       })
       .catch((error) => console.log(error));
@@ -72,7 +72,7 @@ const Login = () => {
         <LoginForm login={login} submitting={loading} />
         <div style={{ display: "flex", justifyContent: "space-between" }}>
           <AuthFormLinks>
-            <NavLink to={`/${match.params.lang}/signup`}>
+            <NavLink to={`/${params.lang}/signup`}>
               <FormattedMessage
                 defaultMessage="Register"
                 id="app.text.register"
@@ -80,7 +80,7 @@ const Login = () => {
             </NavLink>
           </AuthFormLinks>
           <AuthFormLinks>
-            <NavLink to={`/${match.params.lang}/requestreset`}>
+            <NavLink to={`/${params.lang}/requestreset`}>
               <FormattedMessage
                 defaultMessage="Forgotten password?"
                 id="app.text.Forgottenpassword"

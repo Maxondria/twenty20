@@ -57,7 +57,7 @@ const ResetPassword = () => {
             description: `You have been automatically logged in, ${res.data?.resetPassword?.user?.firstname}`,
             key: "auth-toast",
           });
-          history.replace("/");
+          history.replace(`/${params.lang}/`);
         }
       })
       .catch((error) => console.log(error));

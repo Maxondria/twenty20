@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { notification } from "antd";
 import { gql, useMutation } from "@apollo/client";
-import { useHistory, useRouteMatch, NavLink } from "react-router-dom";
+import { useHistory, useParams, NavLink } from "react-router-dom";
 
 import { AuthUserContext } from "../../contexts/User";
 import {
@@ -45,7 +45,7 @@ const SIGNUP = gql`
 `;
 const SignupPage = () => {
   const history = useHistory();
-  const match = useRouteMatch();
+  const params = useParams();
   const { setUser } = useContext(AuthUserContext);
 
   const [signupFunc, { loading }] = useMutation(SIGNUP, {
@@ -77,7 +77,7 @@ const SignupPage = () => {
             message: `Welcome, ${res.data?.signup?.user?.firstname} ${res.data?.signup?.user?.lastname}`,
             key: "auth-toast",
           });
-          history.replace("/");
+          history.replace(`/${params.lang}/`);
         }
       })
       .catch((error) => console.log(error));
@@ -98,7 +98,7 @@ const SignupPage = () => {
             defaultMessage="Already have an account?"
             id="app.info.alreadyaccount"
           />{" "}
-          <NavLink to={`/${match.params.lang}/login`}>
+          <NavLink to={`/${params.lang}/login`}>
             <FormattedMessage defaultMessage="Login" id="app.text.login" />
           </NavLink>
         </AuthFormLinks>

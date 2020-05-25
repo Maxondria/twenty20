@@ -6,7 +6,7 @@ import {
 } from "../../styles/commonStyles";
 import { gql, useMutation } from "@apollo/client";
 import { FormattedMessage } from "react-intl";
-import { useRouteMatch, NavLink } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { notification } from "antd";
 
 import RequestresetForm from "../../components/forms/requestreset";
@@ -20,7 +20,7 @@ const REQUEST_RESET = gql`
 `;
 
 const RequestReset = () => {
-  const match = useRouteMatch();
+  const params = useParams();
 
   const [resetFunc, { loading }] = useMutation(REQUEST_RESET, {
     errorPolicy: "all",
@@ -29,7 +29,7 @@ const RequestReset = () => {
   const submit = (values) => {
     console.log(values);
     resetFunc({
-      variables: { email: values.email, language: match.params.lang },
+      variables: { email: values.email, language: params.lang },
     })
       .then((res) => {
         if (res?.errors) {
@@ -62,7 +62,7 @@ const RequestReset = () => {
             defaultMessage="You remember your password?"
             id="app.info.urememberurpassword"
           />{" "}
-          <NavLink to={`/${match.params.lang}/login`}>
+          <NavLink to={`/${params.lang}/login`}>
             <FormattedMessage defaultMessage="Login" id="app.text.login" />
           </NavLink>
         </AuthFormLinks>

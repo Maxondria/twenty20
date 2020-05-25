@@ -1,5 +1,7 @@
 import React, { createContext, useEffect, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
+import { notification } from "antd";
+
 export const AuthUserContext = createContext(null);
 
 const PROFILE_QUERY = gql`
@@ -26,20 +28,32 @@ const AuthUserContextProvider = (props) => {
     setAuthUser(user);
   };
 
+  const logout = () => {
+    localStorage.removeItem("token");
+    setUser(null);
+    client.resetStore();
+    notification.info({
+      message: "Goodbye",
+      key: "auth-toast",
+    });
+  };
+
   useEffect(() => {
-    if (data?.profile !== null) {
+    if (data && data.profile) {
       setAuthUser(data?.profile);
+    }
+
+    if (data && data.profile === null) {
+      setAuthUser(null);
     }
 
     if (error) {
       setAuthUser(null);
     }
-
-    setAuthUser(null);
   }, [data, error]);
 
   return (
-    <AuthUserContext.Provider value={{ authUser, client, setUser }}>
+    <AuthUserContext.Provider value={{ authUser, client, setUser, logout }}>
       {props.children}
     </AuthUserContext.Provider>
   );

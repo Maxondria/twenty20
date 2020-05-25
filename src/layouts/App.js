@@ -1,11 +1,11 @@
 import React, { useContext, useEffect } from "react";
-import { Switch, useHistory, Redirect, useLocation } from "react-router-dom";
+import { Switch, useHistory, Route, useLocation } from "react-router-dom";
 import { ConfigProvider } from "antd";
 import { IntlProvider } from "react-intl";
-import styled from "styled-components";
 import LoginPage from "../pages/Auth/Login";
 import SignupPage from "../pages/Auth/Signup";
 import RequestReset from "../pages/Auth/RequestReset";
+import NoMatch from "../pages/NoMatch";
 import PrivateRoute from "../components/hoc/PrivateRoute";
 import AuthRoute from "../components/hoc/AuthRoute";
 import { IntlContext } from "../contexts/Intl";
@@ -19,6 +19,7 @@ import loc_es from "../translations/es.json";
 import loc_fr from "../translations/fr.json";
 import Home from "./Home";
 import ResetPassword from "../pages/Auth/ResetPassword";
+import { IntlDiv } from "../styles/commonStyles";
 
 const data = {
   de: loc_de,
@@ -35,26 +36,6 @@ const antData = {
 const languages = ["en", "de", "es", "fr"];
 
 // const language = navigator.language.split(/[-_]/)[0];
-const IntlDiv = styled.div`
-  position: fixed;
-  bottom: 10px;
-  right: 10px;
-
-  span {
-    margin-right: 10px;
-
-    &:hover {
-      text-decoration: underline;
-      cursor: pointer;
-      color: #1890ff;
-    }
-  }
-
-  .active-lang {
-    text-decoration: underline;
-    color: #1890ff;
-  }
-`;
 
 const App = () => {
   const { lang, setLang } = useContext(IntlContext);
@@ -85,7 +66,9 @@ const App = () => {
             <PrivateRoute path="/:lang/" lang={lang}>
               <Home />
             </PrivateRoute>
-            <Redirect to={`/${lang}/`} />
+            <Route path="*">
+              <NoMatch />
+            </Route>
           </Switch>
         </ConfigProvider>
       </IntlProvider>
